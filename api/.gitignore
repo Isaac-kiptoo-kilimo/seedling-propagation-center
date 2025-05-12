@@ -1,0 +1,52 @@
+# Node.js dependencies
+node_modules/
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+
+# Logs
+npm-debug.log*
+pnpm-debug.log*
+debug.log
+*.log
+
+# Editor & OS Files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build Files
+dist/
+build/
+.cache/
+.out/
+
+# Coverage Reports
+coverage/
+*.lcov
+
+# Database & Dump Files
+dump.rdb
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+
+# Temporary Files
+tmp/
+temp/
+
+# React Specific
+*.eslintcache
+*.babelrc
+public/
+
+endpoints/

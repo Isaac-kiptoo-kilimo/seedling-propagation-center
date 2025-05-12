@@ -1,0 +1,26 @@
+.error-page {
+    min-height: 100vh;
+    text-align: center;
+    display: grid;
+    place-items: center;
+  }
+  
+  .error-page__icon svg {
+    font-size: 5rem;
+    color: var(--primary-clr);
+  }
+  .error-page__text {
+    text-transform: capitalize;
+    letter-spacing: var(--letter-spacing);
+    margin-bottom: 1rem;
+    color: var(--gray);
+  }
+  .error-page__text span {
+    color: var(--primary-clr);
+    font-weight: 700;
+  }
+  
+  .error-page__btn {
+    transition: var(--transition);
+  }
+  

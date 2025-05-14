@@ -23,8 +23,6 @@ const EditStaffPage = () => {
 
 const {data:staffData}=useGetStaffDetailsQuery(id)
 
-console.log("staff staffData",staffData);
-
   const {
     register,
     handleSubmit,
@@ -45,7 +43,6 @@ console.log("staff staffData",staffData);
 
   const handleEditStaff = async (formData) => {
  try {
-  console.log("form data, ", formData)
   const response=await updateStaffProfile({ _id:id, 
     updatedStaff: {...formData},
    });

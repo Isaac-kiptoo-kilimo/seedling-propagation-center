@@ -33,7 +33,6 @@ const ForgotPassword = () => {
       const response = await forgotPassword({
         email: formData.email,
       });
-      // console.log("forgot response", response);
       if (response && response.error) {
         toast.error(response.error.data.message);
         reset();

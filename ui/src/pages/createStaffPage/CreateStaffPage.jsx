@@ -42,7 +42,6 @@ const CreateStaffPage = () => {
         phoneNumber: formData.phoneNumber,
         password: formData.password
       });
-      console.log("response", response);
       if (response && response.error) {
         toast.error(response.error.data.message);
         reset();

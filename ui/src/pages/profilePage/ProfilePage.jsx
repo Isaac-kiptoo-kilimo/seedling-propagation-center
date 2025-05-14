@@ -29,8 +29,6 @@ const ProfilePage = () => {
     return null;
   }
 
-  console.log("data for user >>>", data);
-
   const { fullName, email, phoneNumber, streetAddress, county } =
     role === "staff" ? data.staff : data.user;
 

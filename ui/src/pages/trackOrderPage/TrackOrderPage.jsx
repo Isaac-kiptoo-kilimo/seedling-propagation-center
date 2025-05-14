@@ -18,8 +18,6 @@ const TrackOrderPage = () => {
   };
 
   const status = data?.orderStatus.currentStatus || ""; 
-
-  console.log("currentStatus",data?.orderStatus.currentStatus);
   
   const isOrderReceived = status === "Pending" || status === "Processing" ||  status === "InTransit" || status === "Delivered" || status === "Completed";
   const isInTransit = status === "InTransit" || status === "Delivered" || status === "Completed";

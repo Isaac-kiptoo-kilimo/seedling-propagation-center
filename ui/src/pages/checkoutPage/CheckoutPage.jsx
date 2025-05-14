@@ -16,7 +16,6 @@ const CheckoutPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { authenticatedUser: user } = useSelector((store) => store.userProfile);
-  console.log("user");
   const { cartItems: products, totalAmount } = useSelector(
     (store) => store.cart
   );

@@ -10,7 +10,6 @@ export const useAuthCheck = () => {
   useEffect(() => {
       
     const token = getItemFromLocalStorage("token");
-    console.log("token",token);
     
     if (token && isTokenExpired(token)) {
       console.warn('Token expired. Logging out...');

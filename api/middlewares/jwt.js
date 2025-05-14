@@ -51,7 +51,6 @@ export const isJWTValid = async (req, res, next) => {
       });
     }
   } catch (error) {
-    console.log("JWT error:", error.message);
     return res.status(403).json({
       success: false,
       message: "Token validation failed",

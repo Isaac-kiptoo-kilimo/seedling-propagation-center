@@ -12,7 +12,6 @@ const handleResponse = async (response) => {
     try {
       return JSON.parse(stringResponse);
     } catch {
-      console.log('response was not json');
       return stringResponse;
     }
   } catch (e) {

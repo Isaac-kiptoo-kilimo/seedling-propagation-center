@@ -97,7 +97,6 @@ const LoginPage = () => {
       return toast.error("An error occurred logging in");
     }
   };
-  console.log("isisHovered", isHovered);
 
   return (
     <Container>

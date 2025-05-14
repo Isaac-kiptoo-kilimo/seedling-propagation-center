@@ -9,7 +9,6 @@ import { useGetAuditLogsQuery } from '../../features/auditLogs/AuditLogApi';
 const AdminAuditPage = () => {
   const [searchQuery, setSearchQuery] = useState({ page: 1 });
   const { isLoading, isError, data } = useGetAuditLogsQuery(searchQuery);
-console.log("audit data",data);
 
   return (
     <Container>

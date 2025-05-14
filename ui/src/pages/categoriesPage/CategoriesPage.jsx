@@ -34,7 +34,6 @@ const CategoriesPage = () => {
   dispatch(toggleEditCategoryMode(true));  
   };
   const [removeCategory] = useRemoveCategoryMutation();
-console.log("data category",data);
 
   const handleDeleteClick = (category) => {
     setCategoryIdToDelete(category._id);

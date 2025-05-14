@@ -11,8 +11,6 @@ const StaffProtectedRoute = (props) => {
             const user = JSON.parse(localStorage.getItem("loggedInUser"));
             const refreshToken=JSON.parse(localStorage.getItem("refreshToken"))
 
-            console.log("refreshToken", refreshToken);
-
             if(accessToken || refreshToken){
                 if (user && user && user.role === "staff") {
                     setIsAuthenticated(true);

@@ -8,7 +8,7 @@ const FeaturedProducts = () => {
       <div className="featured--products-main">
         <div className="featured--title">
           <h3>Featured Seedlings</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <p>Explore our top picks—healthy, thriving seedlings ready to grow in your space.</p>
         </div>
         <div className="featured-cards">
           {data && data.products.length === 0 ? (

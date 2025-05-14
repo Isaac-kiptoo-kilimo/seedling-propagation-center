@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { createSlice } from "@reduxjs/toolkit";
-const apiBaseUrl = import.meta.env.VITE_API_URL || '/api';
+const apiBaseUrl = 'https://normal-pepita-isaac-kiptoo-kilimo-f515ef7f.koyeb.app/api';
 
 export const auditApi = createApi({
   reducerPath: "auditApi",

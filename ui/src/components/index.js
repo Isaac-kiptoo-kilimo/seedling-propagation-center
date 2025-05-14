@@ -38,6 +38,7 @@ export { default as AdminProductsGrid } from "./adminProductsGrid/AdminProductsG
 export { default as AdminOrdersGrid } from "./adminOrdersGrid/AdminOrdersGrid";
 export { default as CompletePaymentModal } from "./completePaymentModal/CompletePaymentModal";
 export { default as UserOrdersGrid } from "./userOrdersGrid/UserOrdersGrid";
+export { default as SalesReport } from "./salesReport/SalesReport";
 export { default as CreateCategory } from "./createCategory/CreateCategory";
 export { default as AuditItem } from "./auditItem/AuditItem";
 

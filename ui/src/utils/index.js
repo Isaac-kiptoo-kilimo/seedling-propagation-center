@@ -10,5 +10,6 @@ export {
   insights,
   staffLinks,
   userLinks,
-  adminLinks
+  adminLinks,
+  sales
 } from "./data";

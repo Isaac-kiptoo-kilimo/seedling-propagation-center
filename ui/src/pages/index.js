@@ -21,6 +21,7 @@ export { default as AdminAuditPage } from "./adminAuditPage/AdminAuditPage";
 export { default as StaffDashboard } from "./staffDashboard/StaffDashboard";
 export { default as ProfilePage } from "./profilePage/ProfilePage";
 export { default as UserOrderPage } from "./userOrderPage/UserOrderPage";
+export { default as AdminSalesReport } from "./adminSalesReport/AdminSalesReport";
 export { default as CategoriesPage } from "./categoriesPage/CategoriesPage";
 export { default as TrackOrderPage } from "./trackOrderPage/TrackOrderPage";
 export { default as ErrorPage } from "./errorPage/ErrorPage";

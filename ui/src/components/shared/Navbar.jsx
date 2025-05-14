@@ -68,8 +68,7 @@ const Navbar = () => {
         <div className="top-banner">
           <div className="top-banner-caros">
             <p>
-              Register and subscribe to earn 100 points each! Redeem your points
-              for order discounts or free gifts in our stores!
+              Welcome to the Seedling Propagation Centre, where you can explore a wide range of quality seedlings, grow with expert support, and succeed in building a healthy and productive future.
             </p>
           </div>
         </div>

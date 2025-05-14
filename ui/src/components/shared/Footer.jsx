@@ -72,7 +72,7 @@ const Footer = () => {
              <p>Kiambu, Kenya</p>
               <p>Tel: +254 723 003 491</p>
               <p>WhatsApp: +254 723 003 491</p>
-              <p>seedlingpropagation@gmail.com</p>
+              <p>Hello@seedlingcentre.com</p>
              </div>
             </div>
           </div>

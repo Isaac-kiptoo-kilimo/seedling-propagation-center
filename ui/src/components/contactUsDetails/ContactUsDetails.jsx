@@ -50,8 +50,8 @@ const ContactUsDetails = () => {
             <MdEmail className="icon" />
             <div className="contact-item-details">
               <h4>Our Email</h4>
-              <span>info@seedlingstore.com</span>
-              <span>support@seedlingstore.com</span>
+              <span>Hello@seedlingcentre.com</span>
+              {/* <span>support@seedlingstore.com</span> */}
             </div>
           </div>
         </div>

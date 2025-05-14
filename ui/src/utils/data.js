@@ -116,3 +116,29 @@ export const insights = [
     path: "/admin/orders",
   }
 ];
+
+export const sales = [
+  {
+    id: 1,
+    title: "Daily Sales",
+    icon: null,
+    count: 0,
+    path: "/admin/orders",
+  },
+
+  {
+    id: 2,
+    title: "Weekly Sales",
+    icon: null,
+    count: 0,
+    path: "/admin/orders",
+  },
+  {
+    id: 3,
+    title: "Total Sales",
+    icon: null,
+    count: 0,
+    path: "/admin/orders",
+  }
+];
+

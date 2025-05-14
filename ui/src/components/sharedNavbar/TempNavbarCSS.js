@@ -209,11 +209,11 @@ const Container = styled.nav`
   }
 
   @media (min-width: 768px) {
-    /* padding-left: 60px;
+    padding-left: 60px;
     z-index: 2;
     .nav__toggle {
       display: none;
-    } */
+    }
     .nav__logo {
       display: block;
       width: 6rem;

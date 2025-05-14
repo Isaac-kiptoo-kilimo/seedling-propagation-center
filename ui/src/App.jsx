@@ -26,6 +26,7 @@ import {
   SingleProductPage,
   ForgotPassword,
   ResetPassword,
+  AdminSalesReport,
 } from "./pages";
 import { ToastContainer } from "react-toastify";
 import { AdminProtectedRoute, ProtectedRoute, SharedLayout, StaffProtectedRoute, UsersProtectedRoute } from "./components";
@@ -40,7 +41,7 @@ const App = () => {
           <Route path="/authenticate/register" element={<RegisterPage />} />
           <Route path="/authenticate/forgotPassword" element={<ForgotPassword />} />
           <Route path="/authenticate/resetPassword" element={<ResetPassword />} />
-          
+          {/* AdminSalesReport */}
           {/* Admin */}
           <Route element={<SharedLayout />}>
             {/* shared Routes */}
@@ -118,6 +119,15 @@ const App = () => {
               element={
                 <AdminProtectedRoute>
                   <AdminOrdersPage />
+                </AdminProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/admin/reports"
+              element={
+                <AdminProtectedRoute>
+                  <AdminSalesReport />
                 </AdminProtectedRoute>
               }
             />

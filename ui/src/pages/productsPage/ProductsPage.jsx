@@ -2,7 +2,11 @@ import { useState, useMemo, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetAllProductsQuery } from "../../features/products/productApi";
-import { setPage, setPrevPage, setNextPage } from "../../features/products/productApi";
+import {
+  setPage,
+  setPrevPage,
+  setNextPage,
+} from "../../features/products/productApi";
 import FeaturedProductsCard from "../../components/featuredProducts/FeaturedProductsCard";
 import BannerCard from "../../components/heroBanner/BannerCard";
 import TablePages from "../../components/tablePages/TablePages";
@@ -11,6 +15,7 @@ import { GiPlantSeed } from "react-icons/gi";
 import { MdLocalShipping } from "react-icons/md";
 import { PiArrowsClockwiseBold } from "react-icons/pi";
 import Container from "./ProductsPageCSS";
+import { useGetAllCategoriesQuery } from "../../features/categories/categoryApi";
 
 const ProductsPage = () => {
   const location = useLocation();
@@ -22,7 +27,7 @@ const ProductsPage = () => {
   const queryParams = new URLSearchParams(location.search);
   const searchQuery = queryParams.get("search")?.toLowerCase() || "";
 
-  const itemsPerPage = 10;
+  const limit = 12;
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [priceRange, setPriceRange] = useState([0, 100000]);
 
@@ -30,23 +35,27 @@ const ProductsPage = () => {
     dispatch(setPage(page));
   };
 
+  const {
+    isLoading: categoryLoading,
+    isError: categoryError,
+    data: categoryData,
+  } = useGetAllCategoriesQuery();
+
   const { data, isLoading, isError } = useGetAllProductsQuery(
     useMemo(() => {
       const query = {
         page,
-        limit: itemsPerPage,
+        limit,
         search: searchQuery || undefined,
         sortBy: "price",
         sortOrder: "asc",
         category: selectedCategory !== "All" ? selectedCategory : undefined,
-        priceMin: priceRange[0],
-        priceMax: priceRange[1],
       };
 
       return Object.fromEntries(
         Object.entries(query).filter(([_, v]) => v !== undefined)
       );
-    }, [searchQuery, selectedCategory, page, priceRange])
+    }, [searchQuery, selectedCategory, page])
   );
 
   const allProducts = data?.products || [];
@@ -68,12 +77,6 @@ const ProductsPage = () => {
   }, [minPrice, maxPrice]);
 
   const categorizedProducts = useMemo(() => {
-    if (!allProducts || !Array.isArray(allProducts)) {
-      return {
-        All: { name: "All", products: [] },
-      };
-    }
-
     const result = {
       All: { name: "All", products: [...allProducts] },
     };
@@ -90,10 +93,10 @@ const ProductsPage = () => {
     return result;
   }, [allProducts]);
 
-  const categories = useMemo(
-    () => categorizedProducts ? Object.keys(categorizedProducts) : [],
-    [categorizedProducts]
-  );
+  const categories = useMemo(() => {
+    if (!categoryData?.categories) return [];
+    return categoryData.categories;
+  }, [categoryData]);
 
   const handlePriceChange = (e) => {
     const value = Number(e.target.value);
@@ -137,15 +140,24 @@ const ProductsPage = () => {
             <div className="products--filter-items">
               <div className="categories-card">
                 <h4>Shop by Category</h4>
-                {categories.map((id) => (
-                  <div className="category-btns" key={id}>
+                <div className="category-btns">
+                  <button
+                    className={`categories-items ${selectedCategory === "All" ? "active" : ""}`}
+                    onClick={() => setSelectedCategory("All")}
+                  >
+                    All
+                  </button>
+                  <p>({categorizedProducts["All"]?.products.length || 0})</p>
+                </div>
+                {categories.map((category) => (
+                  <div className="category-btns" key={category._id}>
                     <button
-                      className={`categories-items ${selectedCategory === id ? "active" : ""}`}
-                      onClick={() => setSelectedCategory(id)}
+                      className={`categories-items ${selectedCategory === category._id ? "active" : ""}`}
+                      onClick={() => setSelectedCategory(category._id)}
                     >
-                      {categorizedProducts[id].name}
+                      {category.name}
                     </button>
-                    <p>({categorizedProducts[id].products.length})</p>
+                    <p>({categorizedProducts[category._id]?.products.length || 0})</p>
                   </div>
                 ))}
               </div>
@@ -164,10 +176,7 @@ const ProductsPage = () => {
                   <span>KES {minPrice}</span>
                   <span>KES {priceRange[1]}</span>
                 </div>
-                <button
-                  className="reset-btn"
-                  onClick={() => setPriceRange([minPrice, maxPrice])}
-                >
+                <button className="reset-btn" onClick={() => setPriceRange([minPrice, maxPrice])}>
                   RESET
                 </button>
               </div>
@@ -178,9 +187,10 @@ const ProductsPage = () => {
             {isAuthenticated && (
               <div className="inline-filters">
                 <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
-                  {categories.map((id) => (
-                    <option key={id} value={id}>
-                      {categorizedProducts[id].name} ({categorizedProducts[id].products.length})
+                  <option value="All">All ({categorizedProducts["All"]?.products.length || 0})</option>
+                  {categories.map((category) => (
+                    <option key={category._id} value={category._id}>
+                      {category.name} ({categorizedProducts[category._id]?.products.length || 0})
                     </option>
                   ))}
                 </select>
@@ -207,7 +217,11 @@ const ProductsPage = () => {
 
             <div className="products__contents">
               <div className="products--heading">
-                <h2>{selectedCategory === "All" ? "All Products" : categorizedProducts[selectedCategory]?.name}</h2>
+                <h2>
+                  {selectedCategory === "All"
+                    ? "All Products"
+                    : categorizedProducts[selectedCategory]?.name}
+                </h2>
               </div>
 
               <div className="products-cards">
@@ -235,6 +249,7 @@ const ProductsPage = () => {
                   setPrevPage={setPrevPage}
                   setNextPage={setNextPage}
                   setPageNumber={setPageNumber}
+                  limit={limit}
                 />
               )}
             </div>

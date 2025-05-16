@@ -11,9 +11,9 @@ const TablePages = ({
   activePage,
   limit,
 }) => {
-  const pageSize = limit || 10;
+  const pageSize = limit || 12;
   const totalPages = Math.ceil(tableEntries / pageSize);
-  const pageNumbers = getPageNumbers(tableEntries, pageSize);
+  const pageNumbers = getPageNumbers(tableEntries, pageSize, activePage);
   const dispatch = useDispatch();
   return (
     <Container>
@@ -30,7 +30,15 @@ const TablePages = ({
         <span>previous</span>
       </button>
       <div className="numbered__buttons">
-        {pageNumbers.map((pageNumber) => {
+        {pageNumbers.map((pageNumber, index) => {
+          if (pageNumber === "...") {
+            return (
+              <span key={`ellipsis-${index}`} className="ellipsis">
+                ...
+              </span>
+            );
+          }
+
           return (
             <button
               key={pageNumber}

@@ -1,7 +1,11 @@
-import { LoadingSpinner, OrderDetails, PageButtons, SingleOrder } from "..";
+import { LoadingSpinner, OrderDetails, SingleOrder } from "..";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setPage, setPrevPage, setNextPage } from "../../features/orders/orderApi";
+import {
+  setPage,
+  setPrevPage,
+  setNextPage,
+} from "../../features/orders/orderApi";
 import Container from "./UserOrdersGridCSS";
 import { useGetUserOrdersQuery } from "../../features/orders/orderApi";
 import TablePages from "../tablePages/TablePages";
@@ -10,11 +14,11 @@ const UserOrdersGrid = ({ title }) => {
   const { page } = useSelector((store) => store.userPages);
   const dispatch = useDispatch();
 
-  const { data, isLoading, isError } = useGetUserOrdersQuery({page});  
+  const { data, isLoading, isError } = useGetUserOrdersQuery({ page });
   const setPageNumber = (page) => {
     dispatch(setPage(page));
   };
-
+  const limit = 10;
   const user = JSON.parse(localStorage.getItem("loggedInUser"));
   if (!user) {
     return;
@@ -35,32 +39,33 @@ const UserOrdersGrid = ({ title }) => {
           <>
             <div className="orders__grid--sm">
               <div className="orders--sm">
-                  {data && data.orders.length === 0 ? (
-                    <div className="products-zero">
-                      <p>No orders found.</p>
-                    </div>
-                  ) : (
-                    data &&
-                    data.orders.map((order) => {
-                      return (
-                        <SingleOrder
-                          key={order._id}
-                          {...order}
-                          isManage={isManage}
-                        />
-                      );
-                    })
-                  )}
+                {data && data.orders.length === 0 ? (
+                  <div className="products-zero">
+                    <p>No orders found.</p>
+                  </div>
+                ) : (
+                  data &&
+                  data.orders.map((order) => {
+                    return (
+                      <SingleOrder
+                        key={order._id}
+                        {...order}
+                        isManage={isManage}
+                      />
+                    );
+                  })
+                )}
               </div>
               {data && data.totalPages > 1 && (
-              <TablePages
-                tableEntries={data.totalOrders}
-                activePage={page}
-                setPrevPage={setPrevPage}
-                setNextPage={setNextPage}
-                setPageNumber={setPageNumber}
-              />
-            )}
+                <TablePages
+                  tableEntries={data.totalOrders}
+                  activePage={page}
+                  setPrevPage={setPrevPage}
+                  setNextPage={setNextPage}
+                  setPageNumber={setPageNumber}
+                  limit={limit}
+                />
+              )}
             </div>
             <div className="orders__grid--lg">
               <div className="orders__heading">
@@ -94,14 +99,15 @@ const UserOrdersGrid = ({ title }) => {
               </div>
 
               {data && data.totalPages > 1 && (
-              <TablePages
-                tableEntries={data.totalOrders}
-                activePage={page}
-                setPrevPage={setPrevPage}
-                setNextPage={setNextPage}
-                setPageNumber={setPageNumber}
-              />
-            )}
+                <TablePages
+                  tableEntries={data.totalOrders}
+                  activePage={page}
+                  setPrevPage={setPrevPage}
+                  setNextPage={setNextPage}
+                  setPageNumber={setPageNumber}
+                  limit={limit}
+                />
+              )}
             </div>
           </>
         )}

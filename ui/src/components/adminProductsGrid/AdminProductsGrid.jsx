@@ -21,6 +21,7 @@ const AdminProductsGrid = ({ title }) => {
     (store) => store.configurations
   );
 
+  const limit=12;
   const { data, isLoading, isError } = useGetAllProductsQuery({
     ...searchQuery,
     page,
@@ -80,6 +81,7 @@ const AdminProductsGrid = ({ title }) => {
                 setPrevPage={setPrevPage}
                 setNextPage={setNextPage}
                 setPageNumber={setPageNumber}
+                limit={limit}
               />
             )}
             </div>
@@ -119,6 +121,7 @@ const AdminProductsGrid = ({ title }) => {
                 setPrevPage={setPrevPage}
                 setNextPage={setNextPage}
                 setPageNumber={setPageNumber}
+                limit={limit}
               />
             )}
             </div>

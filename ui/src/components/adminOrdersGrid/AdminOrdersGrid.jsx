@@ -9,7 +9,7 @@ const AdminOrdersGrid = ({ title }) => {
   const [searchQuery, setSearchQuery] = useState({});
   const { page } = useSelector((store) => store.orderPages);
   const dispatch = useDispatch();
-
+  const limit= 10;
   const { data, isLoading, isError } = useGetAllOrdersQuery({
     ...searchQuery,
     page,
@@ -66,6 +66,7 @@ const AdminOrdersGrid = ({ title }) => {
                 setPrevPage={setPrevPage}
                 setNextPage={setNextPage}
                 setPageNumber={setPageNumber}
+                limit={limit}
               />
             )}
             </div>
@@ -112,6 +113,7 @@ const AdminOrdersGrid = ({ title }) => {
                 setPrevPage={setPrevPage}
                 setNextPage={setNextPage}
                 setPageNumber={setPageNumber}
+                limit={limit}
               />
             )}
             </div>

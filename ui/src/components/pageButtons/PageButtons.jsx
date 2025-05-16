@@ -9,10 +9,10 @@ const PageButtons = ({
   setPrevPage,
   setNextPage,
   activePage,
-  totalPages
+  totalPages,
 }) => {
-  const pageNumbers = getPageNumbers(userCount, 10);
-
+  const pageSize = 10;
+  const pageNumbers = getPageNumbers(userCount, pageSize, activePage);
   const dispatch = useDispatch();
 
   return (
@@ -29,8 +29,17 @@ const PageButtons = ({
         <FaArrowLeft />
         <span>previous</span>
       </button>
+
       <div className="numbered__buttons">
-        {pageNumbers.map((pageNumber) => {
+        {pageNumbers.map((pageNumber, index) => {
+          if (pageNumber === "...") {
+            return (
+              <span key={`ellipsis-${index}`} className="ellipsis">
+                ...
+              </span>
+            );
+          }
+
           return (
             <button
               key={pageNumber}
@@ -47,6 +56,7 @@ const PageButtons = ({
           );
         })}
       </div>
+
       <button
         disabled={activePage === totalPages}
         style={{

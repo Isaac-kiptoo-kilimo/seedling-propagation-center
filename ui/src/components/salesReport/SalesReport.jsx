@@ -18,7 +18,7 @@ const SalesReport = () => {
       </div>
     );
   }
-  
+    
   // Handle error
   if (isSalesError) {
     return (
@@ -42,10 +42,10 @@ const SalesReport = () => {
   
   // Map the sales
   const updatedSales = sales.map((sale) => {
-    if (sale.id === 2) {
-      return { ...sale, count: salesData?.dailySales?.length || 0 };
-    } else if (sale.id === 1) {
-      return { ...sale, count: salesData?.weeklySales?.length || 0 };
+    if (sale.id === 1) {
+      return { ...sale, count: salesData?.dailySales || 0 };
+    } else if (sale.id === 2) {
+      return { ...sale, count: salesData?.weeklySales || 0 };
     } else if (sale.id === 3) {
       return { ...sale, count: salesData?.totalSales || 0 };
     }
